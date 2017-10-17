@@ -1,6 +1,8 @@
 import numpy as np
 import cv2
 import time
+from skvideo.io import VideoWriter
+
 
 def mostrar_video():
 
@@ -17,10 +19,12 @@ def mostrar_video():
     cv2.destroyAllWindows()
 
 def gravar_video():
+    print("Teste")
     cap = cv2.VideoCapture(0)
 
     # Define the codec and create VideoWriter object
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    out_name = input("Please enter the name of the output file: ")
+    fourcc = cv2.VideoWriter_fourcc(*'H264')
     out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
 
     while(cap.isOpened()):
@@ -41,4 +45,8 @@ def gravar_video():
     cap.release()
     out.release()
     cv2.destroyAllWindows()
+
+# Testing...
+gravar_video()
+
 
