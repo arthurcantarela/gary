@@ -72,9 +72,9 @@ def save_pictures(times,frequency):
     cap = cv2.VideoCapture(0)
     ret, frame = cap.read()
     if ret:
-        for _ in range(times):
+        for i in range(times):
             # The format below makes it easier to find most recent pictures after they're saved
-            cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S")+'.png',frame)
+            cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S")+i+'.png',frame)
             time.sleep(frequency)
     else:
         print("Error, couldn't find webcam")
