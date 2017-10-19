@@ -2,7 +2,6 @@ import numpy as np
 import cv2
 import time
 
-
 def show_video():
     ''' Opens a new window and show what the webcam is recording '''
 
@@ -64,16 +63,16 @@ def save_picture():
     cap.release()
 
 
-def save_pictures(frequency):
+def save_pictures(times,frequency):
     ''' Saves an image capture from the webcam
-        every (frequency) seconds
+        every (frequency) seconds (times) times
         The name of the saved image is today's
         date.   '''
 
     cap = cv2.VideoCapture(0)
     ret, frame = cap.read()
     if ret:
-        while True:
+        for _ in range(times):
             # The format below makes it easier to find most recent pictures after they're saved
             cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S")+'.png',frame)
             time.sleep(frequency)
