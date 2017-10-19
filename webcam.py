@@ -1,10 +1,10 @@
 import numpy as np
 import cv2
 import time
-from skvideo.io import VideoWriter
 
 
-def mostrar_video():
+def show_video():
+    ''' Opens a new window and show what the webcam is recording '''
 
     cap = cv2.VideoCapture(0)
     while(True):
@@ -13,12 +13,15 @@ def mostrar_video():
             cv2.imshow('frame',frame)
             cv2.waitKey(1)
         else:
-            print("Erro, webcam nao reconhecida")
+            print("Error, couldn't find webcam")
 
     cap.release()
     cv2.destroyAllWindows()
 
-def gravar_video():
+def save_video():
+    ''' Saves a video capture from the webcam
+        (Not currently working probably due to
+        codec problems) '''
     print("Teste")
     cap = cv2.VideoCapture(0)
 
@@ -29,7 +32,7 @@ def gravar_video():
 
     while(cap.isOpened()):
         ret, frame = cap.read()
-        if ret==True:
+        if ret:
             frame = cv2.flip(frame,0)
 
             # write the flipped frame
@@ -46,7 +49,15 @@ def gravar_video():
     out.release()
     cv2.destroyAllWindows()
 
-# Testing...
-gravar_video()
+def save_picture():
+    ''' Saves an image capture from the webcam '''
+
+    cap = cv2.VideoCapture(0)
+    ret, frame = cap.read()
+    if ret:
+        cv2.imwrite(time.asctime()+'.png',frame)
+    else:
+        print("Error, couldn't find webcam")
+    cap.release()
 
 
