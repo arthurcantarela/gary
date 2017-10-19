@@ -50,7 +50,9 @@ def save_video():
     cv2.destroyAllWindows()
 
 def save_picture():
-    ''' Saves an image capture from the webcam '''
+    ''' Saves an image capture from the webcam
+        The name of the saved image is today's
+        date.   '''
 
     cap = cv2.VideoCapture(0)
     ret, frame = cap.read()
