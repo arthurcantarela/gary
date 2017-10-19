@@ -64,3 +64,21 @@ def save_picture():
     cap.release()
 
 
+def save_pictures(frequency):
+    ''' Saves an image capture from the webcam
+        every (frequency) seconds
+        The name of the saved image is today's
+        date.   '''
+
+    cap = cv2.VideoCapture(0)
+    ret, frame = cap.read()
+    if ret:
+        while True:
+            # The format below makes it easier to find most recent pictures after they're saved
+            cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S")+'.png',frame)
+            time.sleep(frequency)
+    else:
+        print("Error, couldn't find webcam")
+    cap.release()
+
+
