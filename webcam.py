@@ -70,9 +70,9 @@ def save_pictures(times,frequency):
         date.   '''
 
     cap = cv2.VideoCapture(0)
-    ret, frame = cap.read()
     if ret:
         for i in range(times):
+            ret, frame = cap.read()
             # The format below makes it easier to find most recent pictures after they're saved
             cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S")+i+'.png',frame)
             time.sleep(frequency)
