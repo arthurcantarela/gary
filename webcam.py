@@ -2,27 +2,35 @@ import numpy as np
 import cv2
 import time
 
-def show_video():
+def init_cam():
+    ''' Returns the cv2.VideoCapture(), which is used
+        in the other functions in this file '''
+    cap = cv2.VideoCapture(0)
+    return cap
+
+def release_cam(cam):
+    cam.release
+
+def show_video(cap):
     ''' Opens a new window and show what the webcam is recording '''
 
-    cap = cv2.VideoCapture(0)
+    print("Press 'q' to quit")
     while(True):
         ret, frame = cap.read()
         if ret == True:
             cv2.imshow('frame',frame)
-            cv2.waitKey(1)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
         else:
             print("Error, couldn't find webcam")
 
-    cap.release()
     cv2.destroyAllWindows()
 
-def save_video():
+def save_video(cap):
     ''' Saves a video capture from the webcam
         (Not currently working probably due to
         codec problems) '''
     print("Teste")
-    cap = cv2.VideoCapture(0)
 
     # Define the codec and create VideoWriter object
     out_name = input("Please enter the name of the output file: ")
@@ -44,40 +52,37 @@ def save_video():
             break
 
     # Release everything if job is finished
-    cap.release()
     out.release()
     cv2.destroyAllWindows()
 
-def save_picture():
+def save_picture(cap):
     ''' Saves an image capture from the webcam
         The name of the saved image is today's
         date.   '''
 
-    cap = cv2.VideoCapture(0)
     ret, frame = cap.read()
     if ret:
         # The format below makes it easier to find most recent pictures after they're saved
         cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S")+'.png',frame)
     else:
-        print("Error, couldn't find webcam")
-    cap.release()
+        print("Error, couldn't find webcam" +
+                "Please make sure it has been initialized with cv2.VideoCapture()")
 
 
-def save_pictures(times,frequency):
+def save_pictures(times,frequency,cap):
     ''' Saves an image capture from the webcam
         every (frequency) seconds (times) times
         The name of the saved image is today's
         date.   '''
 
-    cap = cv2.VideoCapture(0)
     for i in range(times):
         ret, frame = cap.read()
         if not ret:
-            print("Error, couldn't find webcam")
+            print("Error, couldn't find webcam" +
+                "Please make sure it has been initialized with cv2.VideoCapture()")
             exit(1)
         # The format below makes it easier to find most recent pictures after they're saved
         cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S")+i+'.png',frame)
         time.sleep(frequency)
-    cap.release()
 
 
