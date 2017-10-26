@@ -63,13 +63,13 @@ def save_picture():
     cap.release()
 
 
-def save_pictures(times,frequency):
+def save_pictures(times,frequency, n=1):
     ''' Saves an image capture from the webcam
         every (frequency) seconds (times) times
         The name of the saved image is today's
         date.   '''
 
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(n)
     for i in range(times):
         ret, frame = cap.read()
         if not ret:
