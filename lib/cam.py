@@ -33,11 +33,11 @@ class Cam:
             print("error, couldn't find webcam")
             return ret
 
-    def save_pictures(self, n, minuts):
+    def save_pictures(self, n, seconds):
         """ Saves n pictures with the frequency f."""
         for i in range(n):
             ret = self.save_picture(i)
+            time.sleep(seconds)
             if not ret:
                 return ret
-            time.sleep(minuts)
 
