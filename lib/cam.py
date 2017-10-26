@@ -1,9 +1,8 @@
-import numpy as np
 import cv2
 import time
 
 class Cam:
-    def __init__(self, num=0, d_photos="photos"):
+    def __init__(self, num=0, d_photos="photos/"):
         """ Initializes cam object. """
         self.cam_num = num
         self.d_photos = d_photos
@@ -27,7 +26,7 @@ class Cam:
         """ Saves the current camera image by datetime. """
         ret, frame = self.cap.read()
         if ret:
-            cv2.imwrite(time.strftime("%Y-%m-%d-%H-%M-%S")+str(i)+'.png', frame)
+            cv2.imwrite(time.strftime(self.d_photos+"%Y-%m-%d-%H-%M-%S")+str(i)+'.png', frame)
             return 1
         else:
             print("error, couldn't find webcam")
