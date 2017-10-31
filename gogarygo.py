@@ -15,15 +15,15 @@ G.setup(13,G.OUT) # front
 G.setup(19,G.OUT) # back
 
 # GPIOs controller for servomotor
-G.setup(03,G.OUT) # back
+G.setup(3,G.OUT) # back
 
 # GPIO PWM setup
 
 G.setup(18,G.OUT) #PWM for motors
-G.setup(03,G.OUT) #PWM for servomotor
+G.setup(3,G.OUT) #PWM for servomotor
 
 #PWM frequency operation
-pwm = G.PWM(03,50)
+pwm = G.PWM(3,50)
 pwm = G.PWM(18,100)
 
 #Starts PWM cycle
@@ -91,10 +91,10 @@ def DriveGary(speed):
 #Servomotor control
 def ServoControl(angle):
     duty = angle/18 + 2
-    GPIO.output(03, True)
+    GPIO.output(3, True)
     pwm.ChangeDutyCycle(duty)
     sleep(1)
-    GPIO.output(03, False)
+    GPIO.output(3, False)
 
 pwm.stop()
 G.cleanup()
