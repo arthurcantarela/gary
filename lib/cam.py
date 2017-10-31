@@ -33,7 +33,7 @@ class Cam:
             return ret
 
     def save_pictures(self, n, seconds):
-        """ Saves n pictures with the frequency f."""
+        """ Saves n pictures with the time interval seconds."""
         for i in range(n):
             ret = self.save_picture(i)
             time.sleep(seconds)
