@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GARY</title>
+    </head>
+    <body>
+        <form action="take_picture" method="POST">
+            {% csrf_token %}
+            <input type="checkbox" name="picture"  style="display: none" />
+            <input type="submit" value="Take Picture">
+        </form>
+    </body>
+</html>

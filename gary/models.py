@@ -6,3 +6,10 @@ class User(AuthUser):
         primary_key = True,
         max_length = 6,
     )
+
+class Status(models.Model):
+    picture = models.BooleanField(
+        blank = False,
+        null = False,
+        default = False
+    )
