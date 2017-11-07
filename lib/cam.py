@@ -53,7 +53,7 @@ class Cam:
                 cv2.destroyAllWindows()
         else:
             print("Error: Couldn't take picture")
-            return 0
+            return 1
 
         
 
