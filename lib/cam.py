@@ -3,7 +3,7 @@ import cv2
 import time
 
 class Cam:
-    def __init__(self, num=0, d_photos="photos/"):
+    def __init__(self, num=0, d_photos="../photos/"):
         """ Initializes cam object. """
         self.cam_num = num
         self.d_photos = d_photos
@@ -41,6 +41,10 @@ class Cam:
             time.sleep(seconds)
             if not ret:
                 return ret
+
+    def open_picture(self,path):
+        return cv2.imread(self.d_photos+path)
+
     def detect_garbage(self):
         ret, frame = self.cap.read()
         if ret:
@@ -54,8 +58,3 @@ class Cam:
         else:
             print("Error: Couldn't take picture")
             return 1
-
-        
-
-    
-
