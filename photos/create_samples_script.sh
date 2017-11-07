@@ -38,4 +38,3 @@ echo Starting opencv_createsamples executable...
 
 opencv_createsamples -info positive_cropped/positive_cropped.info -num $number_pics -bg negative/negatives.txt -vec output.vec -w 20 -h 20
 
-
