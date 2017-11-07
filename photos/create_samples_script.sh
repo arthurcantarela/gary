@@ -4,6 +4,8 @@
 
 # Creates the positive .info file
 
+echo Generating text files...
+
 rm positive_cropped/positive_cropped.info
 
 for i in $( ls positive_cropped ); do
@@ -13,14 +15,27 @@ for i in $( ls positive_cropped ); do
     echo $height_width >> positive_cropped/positive_cropped.info
 done
 
+
 # And now the negative
 
-rm negative/negative.txt
+rm negative/negatives.txt
 
-ls negative > negative/negative.txt
+ls negative > negatives.txt
+
+mv negatives.txt negative/
+
+echo Done
 
 #### CREATE SAMPLES IN A .VEC FILE
 
-opencv_createsamples -info positive_cropped/positive_cropped.info -bg negative/negatives.txt -neg negative/negatives.txt -vec output.vec -w 20 -h 20
+rm output.vec # Just in case
+
+number_pics=$(ls -l positive_cropped/ | grep -E '.png|.jpg|.jpeg' | wc -l)
+
+echo There are $number_pics pictures in your positive_cropped directory.
+
+echo Starting opencv_createsamples executable...
+
+opencv_createsamples -info positive_cropped/positive_cropped.info -num $number_pics -bg negative/negatives.txt -vec output.vec -w 20 -h 20
 
 
