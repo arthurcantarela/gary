@@ -7,21 +7,28 @@
 echo Generating text files...
 
 rm -f positive_cropped/positive_cropped.info
+rm -f positive_cropped.info
+
+touch positive_cropped.info
 
 for i in $( ls positive_cropped ); do
     height_width=$(identify -format '%w %h' positive_cropped/$i)
-    echo -n $i >> positive_cropped/positive_cropped.info
-    echo -n " 1 0 0 " >> positive_cropped/positive_cropped.info
-    echo $height_width >> positive_cropped/positive_cropped.info
+    echo -n $i >> positive_cropped.info
+    echo -n " 1 0 0 " >> positive_cropped.info
+    echo $height_width >> positive_cropped.info
 done
 
+mv positive_cropped.info positive_cropped/
 
 # And now the negative
 
 rm -f negative/negatives.txt
+rm -f negatives.txt
+
+touch negatives.txt
 
 for i in $( ls negative ); do
-    echo negative/$i >> negative/negatives.txt
+    echo negative/$i >> negatives.txt
 done
 
 mv negatives.txt negative/
