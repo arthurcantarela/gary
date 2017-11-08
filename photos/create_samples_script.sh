@@ -6,7 +6,7 @@
 
 echo Generating text files...
 
-rm positive_cropped/positive_cropped.info
+rm -f positive_cropped/positive_cropped.info
 
 for i in $( ls positive_cropped ); do
     height_width=$(identify -format '%w %h' positive_cropped/$i)
@@ -18,7 +18,7 @@ done
 
 # And now the negative
 
-rm negative/negatives.txt
+rm -f negative/negatives.txt
 
 for i in $( ls negative ); do
     echo negative/$i >> negative/negatives.txt
@@ -30,7 +30,7 @@ echo Done
 
 #### CREATE SAMPLES IN A .VEC FILE
 
-rm output.vec # Just in case
+rm -f output.vec # Just in case
 
 number_pics=$(ls -l positive_cropped/ | grep -E '.png|.jpg|.jpeg' | wc -l)
 
