@@ -20,7 +20,9 @@ done
 
 rm negative/negatives.txt
 
-ls negative > negatives.txt
+for i in $( ls negative ); do
+    echo negative/$i >> negative/negatives.txt
+done
 
 mv negatives.txt negative/
 
@@ -36,5 +38,5 @@ echo There are $number_pics pictures in your positive_cropped directory.
 
 echo Starting opencv_createsamples executable...
 
-opencv_createsamples -info positive_cropped/positive_cropped.info -num $number_pics -bg negative/negatives.txt -vec output.vec -w 20 -h 20
+opencv_createsamples -info positive_cropped/positive_cropped.info -num $number_pics -bg negative/negatives.txt -vec output.vec -w 20 -h 20 -maxxangle 0.6 -maxyangle 0.1 -maxzangle 0.3 -maxxidev 100 -bgcolor 0 -bgthresh 0
 
