@@ -19,8 +19,8 @@ def main():
         gary.update()
         # Do tasks in order
         if gary.have_tasks:
-            for e in gary.queue:
-                gary.do(e)
+            for task in gary.queue:
+                gary.do(task)
         # Move
         gary.move()
         # Process images
