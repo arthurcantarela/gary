@@ -28,7 +28,7 @@ rm -f negatives.txt
 touch negatives.txt
 
 for i in $( ls negative ); do
-    echo negative/$i >> negatives.txt
+    echo $i >> negatives.txt
 done
 
 mv negatives.txt negative/
