@@ -1,12 +1,14 @@
+import numpy as np
 import cv2
 import time
 
 class Cam:
-    def __init__(self, num=0, d_photos="photos/"):
+    def __init__(self, num=0, d_photos="../photos/"):
         """ Initializes cam object. """
         self.cam_num = num
         self.d_photos = d_photos
         self.cap = cv2.VideoCapture(self.cam_num)
+        self.cascade = cv2.CascadeClassifier('../photos/cascade/cascade.xml')
         ret, self.frame = self.cap.read()
         if not ret:
             return ret
@@ -40,3 +42,19 @@ class Cam:
             if not ret:
                 return ret
 
+    def open_picture(self,path):
+        return cv2.imread(self.d_photos+path)
+
+    def detect_garbage(self):
+        ret, frame = self.cap.read()
+        if ret:
+            gray = cv2.cvtColor(frame, cv2.COLOR_BFR2GRAY)
+            garbage = self.cascade.detectMultiScale(gray, 1.3, 5)
+            for (x,y,w,h) in garbage:
+                cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+                cv2.imgshow('frame',frame)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
+        else:
+            print("Error: Couldn't take picture")
+            return 1
