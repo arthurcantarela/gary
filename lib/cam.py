@@ -9,6 +9,9 @@ class Cam:
         self.d_photos = d_photos
         self.cap = cv2.VideoCapture(self.cam_num)
         self.cascade = cv2.CascadeClassifier('../photos/cascade/cascade.xml')
+        ret, self.frame = self.cap.read()
+        if not ret:
+            return ret
 
     def init(self):
         """ Initializes the cam. """
