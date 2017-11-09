@@ -50,7 +50,7 @@ class Cam:
             garbage = self.cascade.detectMultiScale(gray, 1.3, 5)
             for (x,y,w,h) in garbage:
                 cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
-                cv2.imgshow('frame',frame)
+                cv2.imshow('frame',frame)
                 cv2.waitKey(0)
                 cv2.destroyAllWindows()
     def detect_garbage(self):
@@ -60,7 +60,7 @@ class Cam:
             garbage = self.cascade.detectMultiScale(gray, 1.3, 5)
             for (x,y,w,h) in garbage:
                 cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
-                cv2.imgshow('frame',frame)
+                cv2.imshow('frame',frame)
                 cv2.waitKey(0)
                 cv2.destroyAllWindows()
         else:
