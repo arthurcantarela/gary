@@ -11,7 +11,7 @@ class Cam:
         self.cascade = cv2.CascadeClassifier('../photos/cascade/cascade.xml')
         ret, self.frame = self.cap.read()
         if not ret:
-            return ret
+            print("Couldn't open webcam")
 
     def init(self):
         """ Initializes the cam. """
@@ -45,10 +45,18 @@ class Cam:
     def open_picture(self,path):
         return cv2.imread(self.d_photos+path)
 
+    def detect_garbage_picture(self,frame):
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            garbage = self.cascade.detectMultiScale(gray, 1.3, 5)
+            for (x,y,w,h) in garbage:
+                cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+                cv2.imgshow('frame',frame)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
     def detect_garbage(self):
         ret, frame = self.cap.read()
         if ret:
-            gray = cv2.cvtColor(frame, cv2.COLOR_BFR2GRAY)
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             garbage = self.cascade.detectMultiScale(gray, 1.3, 5)
             for (x,y,w,h) in garbage:
                 cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
