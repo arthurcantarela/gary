@@ -11,7 +11,7 @@ class Cam:
         self.cascade = cv2.CascadeClassifier('../photos/cascade/cascade.xml')
         ret, self.frame = self.cap.read()
         if not ret:
-            return ret
+            print("Error: webcam not found")
 
     def init(self):
         """ Initializes the cam. """
