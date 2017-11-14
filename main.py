@@ -22,7 +22,9 @@ def main():
         # Move
         gary.move()
         # Process images
-        gary.eyes.process()
+        action = gary.eyes.process()
+        # Go foward, rotate or keep waiting
+        gary.do(action)
 
 if __name__ == "__main__":
     main()
