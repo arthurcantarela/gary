@@ -1,12 +1,10 @@
+import numpy as np
+import cv2
 import urllib
 import json
 from pprint import pprint
 from lib.cam import Cam
 from lib.robot import GarbageColectorRobot
-
-# Status Code:
-# 0 - Dont have task to do
-# 1 - Tasks in queue
 
 def main():
     """Main program with the main loop for the robot."""

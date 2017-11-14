@@ -28,7 +28,7 @@ class GarbageColectorRobot():
     def do(self, action):
         """Switch case that calls methods based on the actions in
         the queue."""
-        pass
+        if action ==
 
     def move(self):
         """Simple movement in its own axis."""
