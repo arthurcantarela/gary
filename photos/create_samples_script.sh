@@ -13,12 +13,11 @@ touch positive_cropped.info
 
 for i in $( ls positive_cropped ); do
     height_width=$(identify -format '%w %h' positive_cropped/$i)
+    echo -n positive_cropped/ >> positive_cropped.info
     echo -n $i >> positive_cropped.info
     echo -n " 1 0 0 " >> positive_cropped.info
     echo $height_width >> positive_cropped.info
 done
-
-mv positive_cropped.info positive_cropped/
 
 # And now the negative
 
@@ -28,10 +27,10 @@ rm -f negatives.txt
 touch negatives.txt
 
 for i in $( ls negative ); do
+    echo -n negative/ >> negatives.txt
     echo $i >> negatives.txt
 done
 
-mv negatives.txt negative/
 
 echo Done
 
@@ -45,5 +44,5 @@ echo There are $number_pics pictures in your positive_cropped directory.
 
 echo Starting opencv_createsamples executable...
 
-opencv_createsamples -info positive_cropped/positive_cropped.info -num $number_pics -bg negative/negatives.txt -vec output.vec -w 20 -h 20 -maxxangle 0.6 -maxyangle 0.1 -maxzangle 0.3 -maxxidev 100 -bgcolor 0 -bgthresh 0
+opencv_createsamples -info positive_cropped.info -bg negatives.txt -vec output.vec -w 20 -h 20
 
