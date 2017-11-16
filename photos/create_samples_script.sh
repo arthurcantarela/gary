@@ -36,13 +36,22 @@ echo Done
 
 #### CREATE SAMPLES IN A .VEC FILE
 
-rm -f output.vec # Just in case
-
-number_pics=$(ls -l positive_cropped/ | grep -E '.png|.jpg|.jpeg' | wc -l)
-
 echo There are $number_pics pictures in your positive_cropped directory.
 
 echo Starting opencv_createsamples executable...
 
-opencv_createsamples -info positive_cropped.info -bg negatives.txt -vec output.vec -w 20 -h 20
+COUNTER=0
 
+rm -r -f vecs/
+rm -f output.vec
+
+number_negatives=$( ls -l negative/ | grep -E '.png|.jpg|.jpeg' | wc -l )
+
+for i in $( ls positive_cropped ); do
+    opencv_createsamples -img positive_cropped/$i -num $number_negatives -bg negatives.dat -info positive_cropped.info -vec vecs/output$COUNTER.vec -maxxangle 0.6 -maxyangle 0 -maxzangle 0.3 -maxidev 100 -bgcolor 0 -bgthresh 0 -w 30 -h 30
+    let COUNTER=$COUNTER+1
+done
+
+### MERGING .VECs
+
+python mergevec.py -v vecs/ -o output.vec
