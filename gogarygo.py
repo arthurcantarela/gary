@@ -112,7 +112,7 @@ class GarbageColectorRobot:
 	sleep(1)
 
         G.output(3, False)
-	self.pwm_sm.ChangeDutyCycle(0)
+	self.pwm_sm.ChangeDutyCycle(0) 
 
     def hungry(self):
 
