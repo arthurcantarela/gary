@@ -46,6 +46,7 @@ class Cam:
         return cv2.imread(self.d_photos+path)
 
     def detect_garbage_picture(self,frame):
+            ans = []
             gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             garbage = self.cascade.detectMultiScale(gray, 1.3, 5)
             for (x,y,w,h) in garbage:
@@ -53,6 +54,8 @@ class Cam:
                 cv2.imshow('frame',frame)
                 cv2.waitKey(0)
                 cv2.destroyAllWindows()
+                ans += frame
+            return tuple(ans)
 
     def detect_garbage(self):
         ret, frame = self.cap.read()
