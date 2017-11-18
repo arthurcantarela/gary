@@ -8,7 +8,7 @@ class Cam:
         self.cam_num = num
         self.d_photos = d_photos
         self.cap = cv2.VideoCapture(self.cam_num)
-        self.cascade = cv2.CascadeClassifier('../photos/cascade/cascade.xml')
+        self.cascade = cv2.CascadeClassifier('photos/cascade/cascade.xml')
         ret, self.frame = self.cap.read()
         if not ret:
             print("Error: webcam not found")
