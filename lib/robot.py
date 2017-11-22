@@ -4,6 +4,8 @@ class GarbageColectorRobot():
         self.eyes = Cam(cam_num, d_photos)
         self.alive = False
 
+        gary.trowel =  
+
         try:
             # Init camera
             gary.eyes.init()
