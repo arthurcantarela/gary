@@ -51,11 +51,11 @@ class Locomotion():
         G.output(13,False)
         G.output(19,False)
 
-    def move_foward(self, seconds=None):
+    def move_forward(self, seconds=None):
         G.output(5, True)
-        G.output(6, False)
+        G.output(6, True)
         G.output(13, True)
-        G.output(19, False)
+        G.output(19, True)
 
         if seconds != None:
             time.sleep(seconds)
@@ -114,10 +114,10 @@ class Locomotion():
         """Anihilate the garbage."""
         # Open mouth
         self.turn_servo(180)
-        # Go foward
-        self.move(8,50)
+        # Go forward
+        self.move_forward(8,50)
         time.sleep(1)
-        self.move(5,0)
+        self.move_forward(5,0)
         # Push gargabe
         self.turn_servo(60)
         # Close mouth
